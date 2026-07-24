@@ -1,75 +1,486 @@
-<!DOCTYPE html>
+import fitz, re, json, os, html, textwrap, pathlib
+
+pdf_path = "/mnt/data/Food for my love.pdf"
+doc = fitz.open(pdf_path)
+
+recipes = []
+for i, page in enumerate(doc):
+    lines = [x.strip() for x in page.get_text("text").splitlines() if x.strip()]
+    raw_title = lines[0] if lines else f"{i+1}. Receta {i+1}"
+    title = re.sub(r"^\s*\d+\s*[\.\-:]?\s*", "", raw_title).strip()
+    lower = title.lower()
+    if "arroz" in lower:
+        category = "Arroces"
+        icon = "🍚"
+    elif any(k in lower for k in ["camar", "pesc", "concha", "marisco", "langosta"]):
+        category = "Mariscos"
+        icon = "🦐"
+    elif any(k in lower for k in ["sopa", "sopón", "indio viejo", "mondongo"]):
+        category = "Sopas"
+        icon = "🍲"
+    elif any(k in lower for k in ["tamal", "nacatamal", "yoltamal"]):
+        category = "Tamales"
+        icon = "🫔"
+    elif any(k in lower for k in ["pastel", "torta", "dulce", "buñuelo", "cajeta", "rosquilla", "postre"]):
+        category = "Postres"
+        icon = "🍰"
+    elif any(k in lower for k in ["carne", "cerdo", "chancho", "pollo", "venado", "costilla", "corazón", "cusuco", "baho", "vaho"]):
+        category = "Carnes"
+        icon = "🍖"
+    elif any(k in lower for k in ["fresco", "bebida", "pinol", "chicha", "cacao", "tiste"]):
+        category = "Bebidas"
+        icon = "🥤"
+    else:
+        category = "Otros"
+        icon = "🍽️"
+    # short description from early paragraph
+    body_lines = [x for x in lines[1:15] if not x.lower().startswith(("ingredients", "for the", "instructions"))]
+    desc = " ".join(body_lines)
+    desc = re.sub(r"\s+", " ", desc)
+    if len(desc) > 220:
+        desc = desc[:217].rsplit(" ",1)[0] + "..."
+    recipes.append({
+        "id": i + 1,
+        "title": title,
+        "category": category,
+        "icon": icon,
+        "page": i + 1,
+        "description": desc
+    })
+
+data_json = json.dumps(recipes, ensure_ascii=False)
+
+html_content = f"""<!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Comida nicaragüense en EE. UU.</title>
-
-<style>
-body{
-font-family:Arial,sans-serif;
-background:#faf7f2;
-margin:0;
-text-align:center;
-}
-
-header{
-background:#0b6b3a;
-color:white;
-padding:40px;
-}
-
-main{
-padding:30px;
-}
-
-.button{
-display:inline-block;
-background:#d62828;
-color:white;
-padding:15px 30px;
-text-decoration:none;
-border-radius:8px;
-font-size:18px;
-margin-top:20px;
-}
-
-footer{
-margin-top:50px;
-padding:20px;
-background:#eee;
-}
-</style>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Food for My Love: colección de recetas nicaragüenses">
+  <title>Food for My Love | Recetas nicaragüenses</title>
+  <style>
+    :root {{
+      --blue:#0b57a3;
+      --blue-dark:#083b72;
+      --cream:#fffaf2;
+      --ink:#17202a;
+      --muted:#667085;
+      --card:#ffffff;
+      --border:#e7e1d8;
+      --accent:#d95d39;
+    }}
+    * {{ box-sizing:border-box; }}
+    html {{ scroll-behavior:smooth; }}
+    body {{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      color:var(--ink);
+      background:var(--cream);
+      line-height:1.6;
+    }}
+    a {{ color:inherit; }}
+    .topbar {{
+      position:sticky;
+      top:0;
+      z-index:20;
+      background:rgba(255,250,242,.96);
+      border-bottom:1px solid var(--border);
+      backdrop-filter:blur(10px);
+    }}
+    .nav {{
+      max-width:1180px;
+      margin:auto;
+      padding:14px 20px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:18px;
+    }}
+    .brand {{ font-weight:800; letter-spacing:.2px; }}
+    .links {{ display:flex; gap:18px; flex-wrap:wrap; }}
+    .links a {{ text-decoration:none; font-weight:700; font-size:.95rem; }}
+    .hero {{
+      min-height:72vh;
+      display:grid;
+      place-items:center;
+      text-align:center;
+      padding:72px 20px;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(11,87,163,.14), transparent 32%),
+        radial-gradient(circle at 80% 10%, rgba(217,93,57,.14), transparent 30%),
+        linear-gradient(180deg,#fffdf8,#f6efe4);
+    }}
+    .hero-inner {{ max-width:850px; }}
+    .eyebrow {{
+      display:inline-block;
+      padding:7px 12px;
+      border:1px solid var(--border);
+      border-radius:999px;
+      background:#fff;
+      font-weight:700;
+      color:var(--blue);
+    }}
+    h1 {{
+      font-size:clamp(2.5rem,8vw,5.5rem);
+      line-height:1;
+      margin:20px 0 18px;
+      color:var(--blue-dark);
+    }}
+    .hero p {{ font-size:1.15rem; color:var(--muted); max-width:680px; margin:0 auto 28px; }}
+    .actions {{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }}
+    .btn {{
+      display:inline-block;
+      border:0;
+      border-radius:12px;
+      padding:13px 20px;
+      font-size:1rem;
+      font-weight:800;
+      text-decoration:none;
+      cursor:pointer;
+    }}
+    .btn-primary {{ background:var(--blue); color:white; }}
+    .btn-secondary {{ background:white; color:var(--blue); border:1px solid var(--border); }}
+    .section {{ max-width:1180px; margin:auto; padding:70px 20px; }}
+    .section h2 {{ font-size:clamp(1.8rem,4vw,2.7rem); margin:0 0 12px; }}
+    .section-intro {{ color:var(--muted); max-width:720px; margin-bottom:28px; }}
+    .about-grid {{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }}
+    .info-card, .recipe-card {{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:18px;
+    }}
+    .info-card {{ padding:22px; }}
+    .info-card strong {{ display:block; font-size:1.15rem; margin-bottom:5px; }}
+    .tools {{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:12px;
+      margin:22px 0;
+    }}
+    input, select {{
+      width:100%;
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:14px;
+      font-size:1rem;
+      background:#fff;
+    }}
+    .recipe-grid {{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }}
+    .recipe-card {{
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      min-height:265px;
+    }}
+    .recipe-visual {{
+      min-height:112px;
+      display:grid;
+      place-items:center;
+      font-size:3rem;
+      background:linear-gradient(135deg,#eaf2fb,#fff4ec);
+    }}
+    .recipe-body {{ padding:18px; display:flex; flex-direction:column; flex:1; }}
+    .tag {{
+      align-self:flex-start;
+      font-size:.8rem;
+      font-weight:800;
+      color:var(--blue);
+      background:#edf5ff;
+      border-radius:999px;
+      padding:5px 9px;
+    }}
+    .recipe-card h3 {{ margin:12px 0 7px; line-height:1.25; }}
+    .recipe-card p {{ color:var(--muted); font-size:.92rem; flex:1; }}
+    .card-actions {{ display:flex; gap:8px; margin-top:12px; }}
+    .small-btn {{
+      flex:1;
+      border:1px solid var(--border);
+      background:#fff;
+      border-radius:10px;
+      padding:10px;
+      font-weight:800;
+      cursor:pointer;
+    }}
+    .fav.active {{ background:#fff0ed; color:#b33b1d; }}
+    .empty {{ display:none; text-align:center; color:var(--muted); padding:35px; }}
+    .history-list {{ display:grid; gap:10px; }}
+    .history-item {{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      padding:14px 16px;
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:12px;
+    }}
+    .modal {{
+      display:none;
+      position:fixed;
+      inset:0;
+      z-index:50;
+      background:rgba(0,0,0,.72);
+      padding:18px;
+    }}
+    .modal.open {{ display:grid; place-items:center; }}
+    .modal-panel {{
+      width:min(980px,100%);
+      height:min(90vh,850px);
+      background:#fff;
+      border-radius:18px;
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+    }}
+    .modal-head {{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      padding:14px 16px;
+      border-bottom:1px solid var(--border);
+    }}
+    .modal-head h3 {{ margin:0; }}
+    .close {{
+      border:0;
+      background:#eee;
+      border-radius:999px;
+      width:38px;
+      height:38px;
+      font-size:1.25rem;
+      cursor:pointer;
+    }}
+    iframe {{ width:100%; flex:1; border:0; }}
+    footer {{
+      background:var(--blue-dark);
+      color:white;
+      text-align:center;
+      padding:32px 20px;
+    }}
+    @media (max-width:850px) {{
+      .about-grid, .recipe-grid {{ grid-template-columns:1fr 1fr; }}
+    }}
+    @media (max-width:600px) {{
+      .links {{ display:none; }}
+      .about-grid, .recipe-grid, .tools {{ grid-template-columns:1fr; }}
+      .hero {{ min-height:64vh; }}
+      .section {{ padding:52px 16px; }}
+    }}
+  </style>
 </head>
-
 <body>
+  <header class="topbar">
+    <nav class="nav">
+      <div class="brand">Food for My Love</div>
+      <div class="links">
+        <a href="#historia">Historia</a>
+        <a href="#recetas">Recetas</a>
+        <a href="#historial">Historial</a>
+        <a href="Food for my love.pdf" target="_blank">Libro PDF</a>
+      </div>
+    </nav>
+  </header>
 
-<header>
-<h1>Comida nicaragüense en EE. UU.</h1>
-<p>Una colección de auténticas recetas nicaragüenses.</p>
-</header>
+  <main>
+    <section class="hero">
+      <div class="hero-inner">
+        <span class="eyebrow">Recetas nicaragüenses en EE. UU.</span>
+        <h1>Food for My Love</h1>
+        <p>Una colección de sabores, recuerdos y tradiciones nicaragüenses preparada para compartir el amor por nuestra cocina.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#recetas">Explorar recetas</a>
+          <a class="btn btn-secondary" href="Food for my love.pdf" target="_blank">Leer el libro completo</a>
+        </div>
+      </div>
+    </section>
 
-<main>
+    <section class="section" id="historia">
+      <h2>La historia del libro</h2>
+      <p class="section-intro">Este libro reúne recetas nicaragüenses para conservar y compartir la tradición familiar desde Estados Unidos. Puedes editar este párrafo después y escribir aquí la historia personal de cómo nació el proyecto.</p>
+      <div class="about-grid">
+        <div class="info-card"><strong>82 recetas</strong><span>Una colección amplia de platos tradicionales.</span></div>
+        <div class="info-card"><strong>Tradición familiar</strong><span>Sabores que conectan generaciones y lugares.</span></div>
+        <div class="info-card"><strong>Disponible en PDF</strong><span>El libro completo permanece accesible desde cada receta.</span></div>
+      </div>
+    </section>
 
-<h2>Bienvenido</h2>
+    <section class="section" id="recetas">
+      <h2>Busca una receta</h2>
+      <p class="section-intro">Escribe el nombre de un plato o filtra por categoría. Al abrir una receta, el sitio te lleva directamente a su página dentro del libro.</p>
+      <div class="tools">
+        <input id="search" type="search" placeholder="Ejemplo: arroz, carne, tamal..." aria-label="Buscar recetas">
+        <select id="category" aria-label="Filtrar por categoría">
+          <option value="Todas">Todas las categorías</option>
+        </select>
+      </div>
+      <div id="recipeGrid" class="recipe-grid"></div>
+      <div id="empty" class="empty">No se encontraron recetas con esa búsqueda.</div>
+    </section>
 
-<p>
-Este libro reúne recetas tradicionales que han pasado de generación en generación,
-para que los nicaragüenses y amantes de nuestra cultura puedan disfrutarlas desde cualquier lugar.
-</p>
+    <section class="section" id="historial">
+      <h2>Historial reciente</h2>
+      <p class="section-intro">Aquí aparecen las últimas recetas que abriste en este dispositivo.</p>
+      <div id="historyList" class="history-list"></div>
+    </section>
+  </main>
 
-<a class="button" href="Comida para mi amor.pdf" target="_blank">
-📖 Leer el libro
-</a>
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-panel">
+      <div class="modal-head">
+        <h3 id="modalTitle">Receta</h3>
+        <button id="closeModal" class="close" aria-label="Cerrar">×</button>
+      </div>
+      <iframe id="pdfFrame" title="Página de la receta en el libro"></iframe>
+    </div>
+  </div>
 
-</main>
+  <footer>
+    © 2026 The Serrano Stouts · Food for My Love
+  </footer>
 
-<footer>
+  <script>
+    const recipes = {data_json};
+    const grid = document.getElementById('recipeGrid');
+    const search = document.getElementById('search');
+    const category = document.getElementById('category');
+    const empty = document.getElementById('empty');
+    const modal = document.getElementById('modal');
+    const modalTitle = document.getElementById('modalTitle');
+    const pdfFrame = document.getElementById('pdfFrame');
+    const historyList = document.getElementById('historyList');
 
-© 2026 The Serrano Stouts
+    const getFavorites = () => JSON.parse(localStorage.getItem('foodFavorites') || '[]');
+    const setFavorites = (items) => localStorage.setItem('foodFavorites', JSON.stringify(items));
+    const getHistory = () => JSON.parse(localStorage.getItem('foodHistory') || '[]');
+    const setHistory = (items) => localStorage.setItem('foodHistory', JSON.stringify(items));
 
-</footer>
+    [...new Set(recipes.map(r => r.category))].sort().forEach(name => {{
+      const option = document.createElement('option');
+      option.value = name;
+      option.textContent = name;
+      category.appendChild(option);
+    }});
 
+    function renderRecipes() {{
+      const q = search.value.trim().toLowerCase();
+      const selected = category.value;
+      const favorites = getFavorites();
+
+      const filtered = recipes.filter(r => {{
+        const matchesText = (r.title + ' ' + r.description + ' ' + r.category).toLowerCase().includes(q);
+        const matchesCategory = selected === 'Todas' || r.category === selected;
+        return matchesText && matchesCategory;
+      }});
+
+      grid.innerHTML = '';
+      empty.style.display = filtered.length ? 'none' : 'block';
+
+      filtered.forEach(r => {{
+        const card = document.createElement('article');
+        card.className = 'recipe-card';
+        card.innerHTML = `
+          <div class="recipe-visual" aria-hidden="true">${{r.icon}}</div>
+          <div class="recipe-body">
+            <span class="tag">${{r.category}}</span>
+            <h3>${{r.title}}</h3>
+            <p>${{r.description || 'Receta tradicional incluida en el libro Food for My Love.'}}</p>
+            <div class="card-actions">
+              <button class="small-btn open-recipe" data-id="${{r.id}}">Ver receta</button>
+              <button class="small-btn fav ${{favorites.includes(r.id) ? 'active' : ''}}" data-id="${{r.id}}" aria-label="Guardar como favorita">♥</button>
+            </div>
+          </div>`;
+        grid.appendChild(card);
+      }});
+    }}
+
+    function openRecipe(id) {{
+      const recipe = recipes.find(r => r.id === id);
+      if (!recipe) return;
+      modalTitle.textContent = recipe.title;
+      pdfFrame.src = `Food for my love.pdf#page=${{recipe.page}}&zoom=page-width`;
+      modal.classList.add('open');
+      document.body.style.overflow = 'hidden';
+
+      let history = getHistory().filter(item => item.id !== id);
+      history.unshift({{ id: recipe.id, title: recipe.title, page: recipe.page }});
+      setHistory(history.slice(0, 8));
+      renderHistory();
+    }}
+
+    function closeModal() {{
+      modal.classList.remove('open');
+      pdfFrame.src = '';
+      document.body.style.overflow = '';
+    }}
+
+    function renderHistory() {{
+      const history = getHistory();
+      historyList.innerHTML = '';
+      if (!history.length) {{
+        historyList.innerHTML = '<p class="section-intro">Todavía no has abierto ninguna receta.</p>';
+        return;
+      }}
+      history.forEach(item => {{
+        const row = document.createElement('div');
+        row.className = 'history-item';
+        row.innerHTML = `<span>${{item.title}}</span><button class="small-btn open-recipe" data-id="${{item.id}}">Abrir</button>`;
+        historyList.appendChild(row);
+      }});
+    }}
+
+    grid.addEventListener('click', (event) => {{
+      const openButton = event.target.closest('.open-recipe');
+      const favButton = event.target.closest('.fav');
+
+      if (openButton) openRecipe(Number(openButton.dataset.id));
+
+      if (favButton) {{
+        const id = Number(favButton.dataset.id);
+        let favorites = getFavorites();
+        favorites = favorites.includes(id) ? favorites.filter(x => x !== id) : [...favorites, id];
+        setFavorites(favorites);
+        renderRecipes();
+      }}
+    }});
+
+    historyList.addEventListener('click', (event) => {{
+      const button = event.target.closest('.open-recipe');
+      if (button) openRecipe(Number(button.dataset.id));
+    }});
+
+    search.addEventListener('input', renderRecipes);
+    category.addEventListener('change', renderRecipes);
+    document.getElementById('closeModal').addEventListener('click', closeModal);
+    modal.addEventListener('click', (event) => {{
+      if (event.target === modal) closeModal();
+    }});
+    document.addEventListener('keydown', (event) => {{
+      if (event.key === 'Escape') closeModal();
+    }});
+
+    renderRecipes();
+    renderHistory();
+  </script>
 </body>
 </html>
+"""
+
+out_path = "/mnt/data/index.html"
+with open(out_path, "w", encoding="utf-8") as f:
+    f.write(html_content)
+
+zip_path = "/mnt/data/Food-for-My-Love-Website.zip"
+import zipfile
+with zipfile.ZipFile(zip_path, "w", compression=zipfile.ZIP_DEFLATED) as z:
+    z.write(out_path, arcname="index.html")
+    z.write(pdf_path, arcname="Food for my love.pdf")
+
+print(f"Creado: {out_path}")
+print(f"Paquete completo: {zip_path}")
+print(f"Recetas incluidas: {len(recipes)}")
