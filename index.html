@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Food for My Love is a collection of authentic Nicaraguan recipes created by John Stout for his husband, Yonathan Serrano."
+  >
+
+  <title>Food for My Love | Authentic Nicaraguan Recipes</title>
+
+  <style>
+    :root {
+      --blue: #0b5fad;
+      --blue-dark: #073b70;
+      --cream: #fffaf1;
+      --white: #ffffff;
+      --ink: #17202a;
+      --muted: #667085;
+      --border: #e6dfd5;
+      --soft-blue: #eaf4ff;
+      --warm: #fff1e8;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: var(--cream);
+      line-height: 1.6;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav {
+      width: min(1120px, calc(100% - 36px));
+      margin: auto;
+      padding: 15px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      color: var(--blue);
+      font-weight: 800;
+      font-size: 21px;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 15px;
+    }
+
+    .hero {
+      min-height: 720px;
+      display: grid;
+      place-items: center;
+      padding: 82px 20px;
+      text-align: center;
+      background:
+        radial-gradient(
+          circle at 15% 20%,
+          rgba(11, 95, 173, 0.15),
+          transparent 34%
+        ),
+        radial-gradient(
+          circle at 85% 15%,
+          rgba(217, 103, 69, 0.13),
+          transparent 32%
+        ),
+        linear-gradient(
+          135deg,
+          #edf6ff,
+          var(--cream),
+          var(--warm)
+        );
+    }
+
+    .hero-inner {
+      max-width: 850px;
+    }
+
+    .flag {
+      width: 104px;
+      height: 62px;
+      margin: 0 auto 22px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      box-shadow: 0 8px 24px rgba(7, 59, 112, 0.12);
+    }
+
+    .flag div {
+      height: 33.333%;
+    }
+
+    .flag .blue {
+      background: #0067c6;
+    }
+
+    .flag .white {
+      background: white;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 15px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--white);
+      color: var(--blue);
+      font-weight: 800;
+    }
+
+    h1 {
+      margin: 22px 0 16px;
+      color: var(--blue-dark);
+      font-size: clamp(48px, 10vw, 84px);
+      line-height: 1.02;
+    }
+
+    .hero-subtitle {
+      max-width: 720px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: clamp(19px, 3vw, 24px);
+    }
+
+    .dedication {
+      margin: 24px auto 0;
+      color: var(--blue-dark);
+      font-family: Georgia, "Times New Roman", serif;
+      font-style: italic;
+      font-size: 19px;
+    }
+
+    .button-row {
+      margin-top: 32px;
+      display: flex;
+      justify-content: center;
+      gap: 13px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 14px 23px;
+      border-radius: 13px;
+      border: 1px solid transparent;
+      text-decoration: none;
+      font-weight: 800;
+    }
+
+    .button-primary {
+      background: var(--blue);
+      color: var(--white);
+    }
+
+    .button-secondary {
+      background: var(--white);
+      color: var(--blue);
+      border-color: var(--border);
+    }
+
+    .section {
+      width: min(1120px, calc(100% - 36px));
+      margin: auto;
+      padding: 76px 0;
+    }
+
+    .section h2 {
+      margin: 0 0 14px;
+      font-size: clamp
