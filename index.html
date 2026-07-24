@@ -1,213 +1,269 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
-  <meta
-    name="description"
-    content="Food for My Love is a collection of authentic Nicaraguan recipes created by John Stout for his husband, Yonathan Serrano."
-  >
-
-  <title>Food for My Love | Authentic Nicaraguan Recipes</title>
+  <title>Food for My Love</title>
 
   <style>
-    :root {
-      --blue: #0b5fad;
-      --blue-dark: #073b70;
-      --cream: #fffaf1;
-      --white: #ffffff;
-      --ink: #17202a;
-      --muted: #667085;
-      --border: #e6dfd5;
-      --soft-blue: #eaf4ff;
-      --warm: #fff1e8;
-    }
-
     * {
       box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
     }
 
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
-      color: var(--ink);
-      background: var(--cream);
+      background: #fffaf2;
+      color: #17202a;
       line-height: 1.6;
     }
 
-    img {
-      max-width: 100%;
-      display: block;
+    nav {
+      background: white;
+      padding: 18px 24px;
+      border-bottom: 1px solid #e5e5e5;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    a {
-      color: inherit;
+    nav strong {
+      color: #0b57a3;
+      font-size: 20px;
     }
 
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      background: rgba(255, 255, 255, 0.96);
-      border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(10px);
+    nav a {
+      color: #17202a;
+      text-decoration: none;
+      margin-left: 14px;
+      font-weight: bold;
     }
 
-    .nav {
-      width: min(1120px, calc(100% - 36px));
-      margin: auto;
-      padding: 15px 0;
+    header {
+      min-height: 650px;
+      padding: 80px 24px;
+      text-align: center;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-    }
-
-    .brand {
-      color: var(--blue);
-      font-weight: 800;
-      font-size: 21px;
-      text-decoration: none;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 15px;
+      justify-content: center;
+      background: linear-gradient(
+        135deg,
+        #eaf3ff,
+        #fffaf2,
+        #fff0e8
+      );
     }
 
     .hero {
-      min-height: 720px;
-      display: grid;
-      place-items: center;
-      padding: 82px 20px;
-      text-align: center;
-      background:
-        radial-gradient(
-          circle at 15% 20%,
-          rgba(11, 95, 173, 0.15),
-          transparent 34%
-        ),
-        radial-gradient(
-          circle at 85% 15%,
-          rgba(217, 103, 69, 0.13),
-          transparent 32%
-        ),
-        linear-gradient(
-          135deg,
-          #edf6ff,
-          var(--cream),
-          var(--warm)
-        );
+      max-width: 800px;
     }
 
-    .hero-inner {
-      max-width: 850px;
-    }
-
-    .flag {
-      width: 104px;
-      height: 62px;
-      margin: 0 auto 22px;
-      border-radius: 8px;
-      overflow: hidden;
-      border: 1px solid rgba(0, 0, 0, 0.12);
-      box-shadow: 0 8px 24px rgba(7, 59, 112, 0.12);
-    }
-
-    .flag div {
-      height: 33.333%;
-    }
-
-    .flag .blue {
-      background: #0067c6;
-    }
-
-    .flag .white {
-      background: white;
-    }
-
-    .eyebrow {
+    .label {
       display: inline-block;
-      padding: 8px 15px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: var(--white);
-      color: var(--blue);
-      font-weight: 800;
+      background: white;
+      color: #0b57a3;
+      border: 1px solid #d8d8d8;
+      border-radius: 30px;
+      padding: 8px 16px;
+      font-weight: bold;
     }
 
     h1 {
-      margin: 22px 0 16px;
-      color: var(--blue-dark);
-      font-size: clamp(48px, 10vw, 84px);
-      line-height: 1.02;
+      color: #083b72;
+      font-size: 58px;
+      line-height: 1.1;
+      margin: 24px 0 18px;
     }
 
-    .hero-subtitle {
-      max-width: 720px;
-      margin: 0 auto;
-      color: var(--muted);
-      font-size: clamp(19px, 3vw, 24px);
+    header p {
+      font-size: 21px;
+      color: #667085;
+      max-width: 650px;
+      margin: 0 auto 30px;
     }
 
-    .dedication {
-      margin: 24px auto 0;
-      color: var(--blue-dark);
-      font-family: Georgia, "Times New Roman", serif;
-      font-style: italic;
-      font-size: 19px;
-    }
-
-    .button-row {
-      margin-top: 32px;
+    .buttons {
       display: flex;
       justify-content: center;
-      gap: 13px;
+      gap: 14px;
       flex-wrap: wrap;
     }
 
     .button {
       display: inline-block;
-      padding: 14px 23px;
-      border-radius: 13px;
-      border: 1px solid transparent;
+      padding: 14px 24px;
+      border-radius: 12px;
       text-decoration: none;
-      font-weight: 800;
+      font-weight: bold;
+      font-size: 17px;
     }
 
-    .button-primary {
-      background: var(--blue);
-      color: var(--white);
+    .primary {
+      background: #0b57a3;
+      color: white;
     }
 
-    .button-secondary {
-      background: var(--white);
-      color: var(--blue);
-      border-color: var(--border);
+    .secondary {
+      background: white;
+      color: #0b57a3;
+      border: 1px solid #d8d8d8;
     }
 
-    .section {
-      width: min(1120px, calc(100% - 36px));
+    section {
+      max-width: 1050px;
       margin: auto;
-      padding: 76px 0;
+      padding: 70px 24px;
     }
 
-    .section h2 {
-      margin: 0 0 14px;
-      font-size: clamp
+    h2 {
+      font-size: 36px;
+      margin-bottom: 14px;
+    }
+
+    .description {
+      color: #667085;
+      font-size: 18px;
+      max-width: 750px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 30px;
+    }
+
+    .card {
+      background: white;
+      padding: 24px;
+      border: 1px solid #e5e5e5;
+      border-radius: 16px;
+    }
+
+    .card h3 {
+      color: #0b57a3;
+      margin-top: 0;
+    }
+
+    footer {
+      background: #083b72;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    @media (max-width: 700px) {
+      nav div:last-child {
+        display: none;
+      }
+
+      h1 {
+        font-size: 42px;
+      }
+
+      header {
+        min-height: 600px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <strong>Food for My Love</strong>
+
+    <div>
+      <a href="#historia">Historia</a>
+      <a href="#libro">Libro</a>
+    </div>
+  </nav>
+
+  <header>
+    <div class="hero">
+      <span class="label">Recetas nicaragüenses en EE. UU.</span>
+
+      <h1>Food for My Love</h1>
+
+      <p>
+        Una colección de sabores, recuerdos y tradiciones
+        nicaragüenses preparada para compartir el amor por nuestra cocina.
+      </p>
+
+      <div class="buttons">
+        <a class="button primary" href="#historia">
+          Conocer la historia
+        </a>
+
+        <a
+          class="button secondary"
+          href="Food for my love.pdf"
+          target="_blank"
+        >
+          Leer el libro completo
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <section id="historia">
+    <h2>La historia del libro</h2>
+
+    <p class="description">
+      Food for My Love reúne recetas tradicionales nicaragüenses
+      para preservar los sabores familiares y compartirlos desde
+      Estados Unidos con nuevas generaciones.
+    </p>
+
+    <div class="cards">
+      <div class="card">
+        <h3>82 recetas</h3>
+        <p>
+          Una colección amplia de platos tradicionales de Nicaragua.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Tradición familiar</h3>
+        <p>
+          Recetas que conectan recuerdos, familias y generaciones.
+        </p>
+      </div>
+
+      <div class="card" id="libro">
+        <h3>Libro completo</h3>
+        <p>
+          Puedes abrir el PDF original y consultar todas las recetas.
+        </p>
+
+        <a
+          class="button primary"
+          href="Food for my love.pdf"
+          target="_blank"
+        >
+          Abrir PDF
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 The Serrano Stouts · Food for My Love
+  </footer>
+
+</body>
+</html>
+
+
+
+      
+ 
