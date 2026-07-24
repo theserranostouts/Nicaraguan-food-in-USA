@@ -1,92 +1,1168 @@
-Food for My Love
-Our Story
-Nicaragua
-About Us
-Recipes
-The Book
-Authentic Nicaraguan Recipes
-Food for My Love
-A gift from John to Yonathan, created to preserve the flavors, memories, and traditions of Nicaragua.
-“For Yonathan, with all my love.”
-— John
-Explore Recipes
-Read the Complete Book
-The Story Behind the Book
-Food for My Love began as a deeply personal gift from John Stout to his husband, Yonathan Serrano.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
 
-John created the cookbook to celebrate Yonathan’s Nicaraguan heritage and to honor the food, memories, and traditions that connect him to home.
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-More than a collection of recipes, this project represents love, family, cultural pride, and the way food can keep a place close to the heart, even while living far away.
+  <meta
+    name="description"
+    content="Food for My Love is a collection of authentic Nicaraguan recipes created by John Stout for his husband, Yonathan Serrano."
+  >
 
-♥
-“May these recipes always bring you closer to home.”
-From John to Yonathan
-📖
-82 Recipes
-A broad collection of traditional Nicaraguan dishes.
-🇳🇮
-Nicaraguan Heritage
-Recipes that preserve culture, memory, and family tradition.
-♥
-Created with Love
-A personal gift created by John for Yonathan.
-Nicaragua: The Heart of the Cookbook
-Nicaragua’s culinary traditions are shaped by family, regional ingredients, Indigenous heritage, and generations of shared meals.
-Map of Nicaragua
-Preserving a Connection to Home
+  <title>Food for My Love | Authentic Nicaraguan Recipes</title>
 
-For Yonathan, these recipes are more than instructions for preparing food. They are reminders of family, community, and the country where his story began.
+  <style>
+    :root {
+      --blue: #0b5fad;
+      --blue-dark: #073b70;
+      --cream: #fffaf1;
+      --white: #ffffff;
+      --ink: #17202a;
+      --muted: #667085;
+      --border: #e6dfd5;
+      --soft-blue: #eaf4ff;
+      --warm: #fff1e8;
+    }
 
-Food for My Love carries those traditions into a new chapter of life in the United States.
+    * {
+      box-sizing: border-box;
+    }
 
-John Stout and Yonathan Serrano together outdoors
-About John & Yonathan
-Food for My Love reflects a shared life built around love, cultural appreciation, family, and the belief that traditions become stronger when they are preserved and shared.
-“John, thank you for creating this cookbook for me and for embracing the food and culture of Nicaragua with so much love. This gift makes me feel seen, valued, and connected to home. I will always treasure what you created for us.”
+    html {
+      scroll-behavior: smooth;
+    }
 
-— Yonathan
-Featured Recipes
-Search the recipes currently featured on the site or filter them by category.
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: var(--cream);
+      line-height: 1.6;
+    }
 
-🍚
-Rice
-Arroz Ancha
-A rich rice dish prepared with coconut milk, vegetables, and spices.
+    img {
+      display: block;
+      max-width: 100%;
+    }
 
-View Recipe
-🍲
-Rice
-Arroz Aguado
-A comforting Nicaraguan rice dish with broth, vegetables, and meat.
+    a {
+      color: inherit;
+    }
 
-View Recipe
-🍗
-Rice
-Arroz con Pollo
-A family favorite made with chicken, rice, vegetables, and seasonings.
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+    }
 
-View Recipe
-🍖
-Meat
-Baho en Managua
-Marinated meat, plantains, yuca, and vegetables slowly steamed together.
+    .nav {
+      width: min(1120px, calc(100% - 36px));
+      margin: auto;
+      padding: 15px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
 
-View Recipe
-🍆
-Vegetables
-Berenjenas Rellenas
-Baked eggplants filled with seasoned meat, vegetables, and cheese.
+    .brand {
+      color: var(--blue);
+      font-size: 21px;
+      font-weight: 800;
+      text-decoration: none;
+    }
 
-View Recipe
-🦐
-Seafood
-Camarones al Ajillo
-Shrimp cooked in a fragrant garlic, butter, citrus, and herb sauce.
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
 
-View Recipe
-Read the Complete Cookbook
-Open the original Food for My Love cookbook and explore the complete collection of 82 recipes.
+    .nav-links a {
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+    }
 
-Open the Complete PDF
-© 2026 John Stout and Yonathan Serrano · Food for My Love
-Nicaragua map: public-domain CIA World Factbook map via Wikimedia Commons.
+    .nav-links a:hover {
+      color: var(--blue);
+    }
+
+    .hero {
+      min-height: 720px;
+      padding: 82px 20px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      background:
+        radial-gradient(
+          circle at 15% 20%,
+          rgba(11, 95, 173, 0.15),
+          transparent 34%
+        ),
+        radial-gradient(
+          circle at 85% 15%,
+          rgba(217, 103, 69, 0.13),
+          transparent 32%
+        ),
+        linear-gradient(
+          135deg,
+          #edf6ff,
+          var(--cream),
+          var(--warm)
+        );
+    }
+
+    .hero-inner {
+      max-width: 850px;
+    }
+
+    .flag {
+      width: 104px;
+      height: 63px;
+      margin: 0 auto 22px;
+      overflow: hidden;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(7, 59, 112, 0.12);
+    }
+
+    .flag div {
+      height: 33.333%;
+    }
+
+    .flag-blue {
+      background: #0067c6;
+    }
+
+    .flag-white {
+      position: relative;
+      background: #ffffff;
+    }
+
+    .flag-white::after {
+      content: "△";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      color: #d9a500;
+      font-size: 20px;
+      transform: translate(-50%, -52%);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 15px;
+      color: var(--blue);
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-weight: 800;
+    }
+
+    h1 {
+      margin: 22px 0 16px;
+      color: var(--blue-dark);
+      font-size: clamp(48px, 10vw, 84px);
+      line-height: 1.02;
+    }
+
+    .hero-subtitle {
+      max-width: 720px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: clamp(19px, 3vw, 24px);
+    }
+
+    .dedication {
+      margin: 24px auto 0;
+      color: var(--blue-dark);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 19px;
+      font-style: italic;
+    }
+
+    .button-row {
+      margin-top: 32px;
+      display: flex;
+      justify-content: center;
+      gap: 13px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 14px 23px;
+      border: 1px solid transparent;
+      border-radius: 13px;
+      font-weight: 800;
+      text-decoration: none;
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(7, 59, 112, 0.15);
+    }
+
+    .button-primary {
+      color: var(--white);
+      background: var(--blue);
+    }
+
+    .button-secondary {
+      color: var(--blue);
+      background: var(--white);
+      border-color: var(--border);
+    }
+
+    .section {
+      width: min(1120px, calc(100% - 36px));
+      margin: auto;
+      padding: 76px 0;
+    }
+
+    .section h2 {
+      margin: 0 0 14px;
+      font-size: clamp(34px, 6vw, 48px);
+      line-height: 1.15;
+    }
+
+    .section-intro {
+      max-width: 790px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .story-wrap {
+      background: var(--white);
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .story-copy {
+      font-size: 18px;
+    }
+
+    .quote-card {
+      padding: 28px;
+      text-align: center;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+    }
+
+    .quote-card .heart {
+      color: var(--blue);
+      font-size: 40px;
+    }
+
+    .quote-card blockquote {
+      margin: 10px 0 0;
+      color: var(--blue-dark);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 23px;
+      font-style: italic;
+    }
+
+    .quote-card cite {
+      display: block;
+      margin-top: 12px;
+      color: var(--muted);
+      font-weight: 700;
+      font-style: normal;
+    }
+
+    .heritage-grid {
+      margin-top: 34px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .info-card {
+      padding: 24px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 17px;
+    }
+
+    .story-wrap .info-card {
+      background: var(--cream);
+    }
+
+    .info-icon {
+      font-size: 30px;
+    }
+
+    .info-card h3 {
+      margin: 10px 0 7px;
+      color: var(--blue);
+    }
+
+    .info-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .map-card {
+      margin-top: 34px;
+      padding: 30px;
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 30px;
+      align-items: center;
+      color: var(--white);
+      background:
+        linear-gradient(
+          135deg,
+          var(--blue-dark),
+          var(--blue)
+        );
+      border-radius: 20px;
+      box-shadow: 0 18px 45px rgba(7, 59, 112, 0.18);
+    }
+
+    .map-card img {
+      width: 100%;
+      max-width: 280px;
+      margin: auto;
+      padding: 12px;
+      background: white;
+      border-radius: 14px;
+    }
+
+    .map-card h3 {
+      margin-top: 0;
+      font-size: 26px;
+    }
+
+    .map-card p {
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .photo-frame {
+      min-height: 500px;
+      overflow: hidden;
+      background:
+        linear-gradient(
+          135deg,
+          var(--soft-blue),
+          var(--warm)
+        );
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: 0 18px 50px rgba(7, 59, 112, 0.18);
+    }
+
+    .couple-photo {
+      width: 100%;
+      height: 100%;
+      min-height: 500px;
+      object-fit: cover;
+    }
+
+    .photo-caption {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .thank-you {
+      margin-top: 22px;
+      padding: 22px;
+      background: var(--soft-blue);
+      border-left: 5px solid var(--blue);
+      border-radius: 0 15px 15px 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 18px;
+      font-style: italic;
+    }
+
+    .recipe-tools {
+      margin: 28px 0;
+      display: grid;
+      grid-template-columns: 1fr 240px;
+      gap: 14px;
+    }
+
+    .recipe-tools input,
+    .recipe-tools select {
+      width: 100%;
+      padding: 14px 15px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font: inherit;
+    }
+
+    .recipe-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .recipe-card {
+      overflow: hidden;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: 0 8px 24px rgba(7, 59, 112, 0.06);
+    }
+
+    .recipe-visual {
+      min-height: 145px;
+      display: grid;
+      place-items: center;
+      background:
+        linear-gradient(
+          135deg,
+          var(--soft-blue),
+          var(--warm)
+        );
+      font-size: 56px;
+    }
+
+    .recipe-body {
+      padding: 20px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 5px 10px;
+      color: var(--blue);
+      background: var(--soft-blue);
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .recipe-card h3 {
+      margin: 12px 0 8px;
+      font-size: 22px;
+    }
+
+    .recipe-card p {
+      color: var(--muted);
+    }
+
+    .recipe-link {
+      display: block;
+      padding: 11px 14px;
+      color: var(--white);
+      background: var(--blue);
+      border-radius: 10px;
+      text-align: center;
+      text-decoration: none;
+      font-weight: 800;
+    }
+
+    .recipe-link:hover {
+      background: var(--blue-dark);
+    }
+
+    .no-results {
+      display: none;
+      padding: 30px;
+      color: var(--muted);
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      text-align: center;
+    }
+
+    .book-section {
+      color: var(--white);
+      background: var(--blue-dark);
+      text-align: center;
+    }
+
+    .book-section p {
+      max-width: 720px;
+      margin: 0 auto 25px;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 18px;
+    }
+
+    footer {
+      padding: 30px 20px;
+      color: var(--white);
+      background: #052b53;
+      text-align: center;
+    }
+
+    .credits {
+      margin-top: 10px;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 12px;
+    }
+
+    @media (max-width: 850px) {
+      .story-grid,
+      .about-grid,
+      .map-card {
+        grid-template-columns: 1fr;
+      }
+
+      .heritage-grid,
+      .recipe-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .photo-frame,
+      .couple-photo {
+        min-height: 420px;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        min-height: 680px;
+        padding: 65px 18px;
+      }
+
+      h1 {
+        font-size: 50px;
+      }
+
+      .button-row {
+        flex-direction: column;
+      }
+
+      .button {
+        width: 100%;
+      }
+
+      .heritage-grid,
+      .recipe-grid,
+      .recipe-tools {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        width: min(100% - 32px, 1120px);
+        padding: 60px 0;
+      }
+
+      .map-card {
+        padding: 22px;
+      }
+
+      .photo-frame,
+      .couple-photo {
+        min-height: 360px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="topbar">
+    <nav class="nav">
+
+      <a class="brand" href="#home">
+        Food for My Love
+      </a>
+
+      <div class="nav-links">
+        <a href="#story">Our Story</a>
+        <a href="#heritage">Nicaragua</a>
+        <a href="#about">About Us</a>
+        <a href="#recipes">Recipes</a>
+        <a href="#book">The Book</a>
+      </div>
+
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="hero" id="home">
+      <div class="hero-inner">
+
+        <div
+          class="flag"
+          role="img"
+          aria-label="Flag of Nicaragua"
+        >
+          <div class="flag-blue"></div>
+          <div class="flag-white"></div>
+          <div class="flag-blue"></div>
+        </div>
+
+        <span class="eyebrow">
+          Authentic Nicaraguan Recipes
+        </span>
+
+        <h1>Food for My Love</h1>
+
+        <p class="hero-subtitle">
+          A gift from John to Yonathan, created to preserve the
+          flavors, memories, and traditions of Nicaragua.
+        </p>
+
+        <p class="dedication">
+          “For Yonathan, with all my love.”
+          <br>
+          — John
+        </p>
+
+        <div class="button-row">
+
+          <a
+            class="button button-primary"
+            href="#recipes"
+          >
+            Explore Recipes
+          </a>
+
+          <a
+            class="button button-secondary"
+            href="Food for my love.pdf"
+            target="_blank"
+            rel="noopener"
+          >
+            Read the Complete Book
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="story-wrap" id="story">
+      <div class="section">
+
+        <div class="story-grid">
+
+          <div>
+            <h2>The Story Behind the Book</h2>
+
+            <div class="story-copy">
+
+              <p>
+                Food for My Love began as a deeply personal gift
+                from John Stout to his husband, Yonathan Serrano.
+              </p>
+
+              <p>
+                John created the cookbook to celebrate Yonathan’s
+                Nicaraguan heritage and to honor the food,
+                memories, and traditions that connect him to home.
+              </p>
+
+              <p>
+                More than a collection of recipes, this project
+                represents love, family, cultural pride, and the
+                way food can keep a place close to the heart,
+                even while living far away.
+              </p>
+
+            </div>
+          </div>
+
+          <aside class="quote-card">
+
+            <div class="heart">♥</div>
+
+            <blockquote>
+              “May these recipes always bring you closer to home.”
+            </blockquote>
+
+            <cite>
+              From John to Yonathan
+            </cite>
+
+          </aside>
+
+        </div>
+
+        <div class="heritage-grid">
+
+          <article class="info-card">
+
+            <div class="info-icon">📖</div>
+
+            <h3>82 Recipes</h3>
+
+            <p>
+              A broad collection of traditional Nicaraguan dishes.
+            </p>
+
+          </article>
+
+          <article class="info-card">
+
+            <div class="info-icon">🇳🇮</div>
+
+            <h3>Nicaraguan Heritage</h3>
+
+            <p>
+              Recipes that preserve culture, memory, and
+              family tradition.
+            </p>
+
+          </article>
+
+          <article class="info-card">
+
+            <div class="info-icon">♥</div>
+
+            <h3>Created with Love</h3>
+
+            <p>
+              A personal gift created by John for Yonathan.
+            </p>
+
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="heritage">
+
+      <h2>Nicaragua: The Heart of the Cookbook</h2>
+
+      <p class="section-intro">
+        Nicaragua’s culinary traditions are shaped by family,
+        regional ingredients, Indigenous heritage, and
+        generations of shared meals.
+      </p>
+
+      <div class="map-card">
+
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/3/39/Nicaragua-map.png"
+          alt="Map of Nicaragua"
+        >
+
+        <div>
+
+          <h3>Preserving a Connection to Home</h3>
+
+          <p>
+            For Yonathan, these recipes are more than instructions
+            for preparing food. They are reminders of family,
+            community, and the country where his story began.
+          </p>
+
+          <p>
+            Food for My Love carries those traditions into a new
+            chapter of life in the United States.
+          </p>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="story-wrap" id="about">
+      <div class="section">
+
+        <div class="about-grid">
+
+          <div>
+
+            <div class="photo-frame">
+
+              <img
+                class="couple-photo"
+                src="images/john-and-yonathan.jpg"
+                alt="John Stout and Yonathan Serrano together outdoors"
+                onerror="this.style.display='none'; this.parentElement.style.minHeight='0'; this.parentElement.style.padding='40px'; this.parentElement.innerHTML='<div style=&quot;text-align:center;color:#667085;font-size:18px;&quot;>John &amp; Yonathan<br><small>Upload the photo as images/john-and-yonathan.jpg</small></div>';"
+              >
+
+            </div>
+
+            <div class="photo-caption">
+              John Stout and Yonathan Serrano together outdoors
+            </div>
+
+          </div>
+
+          <div>
+
+            <h2>About John &amp; Yonathan</h2>
+
+            <p class="section-intro">
+              Food for My Love reflects a shared life built around
+              love, cultural appreciation, family, and the belief
+              that traditions become stronger when they are
+              preserved and shared.
+            </p>
+
+            <div class="thank-you">
+
+              “John, thank you for creating this cookbook for me
+              and for embracing the food and culture of Nicaragua
+              with so much love. This gift makes me feel seen,
+              valued, and connected to home. I will always treasure
+              what you created for us.”
+
+              <br><br>
+
+              — Yonathan
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="recipes">
+
+      <h2>Featured Recipes</h2>
+
+      <p class="section-intro">
+        Search the recipes currently featured on the site or
+        filter them by category. Each button opens the
+        corresponding part of the complete cookbook.
+      </p>
+
+      <div class="recipe-tools">
+
+        <input
+          id="recipeSearch"
+          type="search"
+          placeholder="Search recipes..."
+          aria-label="Search recipes"
+        >
+
+        <select
+          id="categoryFilter"
+          aria-label="Filter recipes by category"
+        >
+          <option value="all">All Categories</option>
+          <option value="rice">Rice</option>
+          <option value="meat">Meat</option>
+          <option value="vegetables">Vegetables</option>
+          <option value="seafood">Seafood</option>
+        </select>
+
+      </div>
+
+      <div class="recipe-grid" id="recipeGrid">
+
+        <article
+          class="recipe-card"
+          data-name="Arroz Ancha"
+          data-category="rice"
+        >
+
+          <div class="recipe-visual">🍚</div>
+
+          <div class="recipe-body">
+
+            <span class="tag">Rice</span>
+
+            <h3>Arroz Ancha</h3>
+
+            <p>
+              A rich rice dish prepared with coconut milk,
+              vegetables, and spices.
+            </p>
+
+            <a
+              class="recipe-link"
+              href="Food for my love.pdf#page=1"
+              target="_blank"
+              rel="noopener"
+            >
+              View Recipe
+            </a>
+
+          </div>
+        </article>
+
+        <article
+          class="recipe-card"
+          data-name="Arroz Aguado"
+          data-category="rice"
+        >
+
+          <div class="recipe-visual">🍲</div>
+
+          <div class="recipe-body">
+
+            <span class="tag">Rice</span>
+
+            <h3>Arroz Aguado</h3>
+
+            <p>
+              A comforting Nicaraguan rice dish with broth,
+              vegetables, and meat.
+            </p>
+
+            <a
+              class="recipe-link"
+              href="Food for my love.pdf#page=2"
+              target="_blank"
+              rel="noopener"
+            >
+              View Recipe
+            </a>
+
+          </div>
+        </article>
+
+        <article
+          class="recipe-card"
+          data-name="Arroz con Pollo"
+          data-category="rice"
+        >
+
+          <div class="recipe-visual">🍗</div>
+
+          <div class="recipe-body">
+
+            <span class="tag">Rice</span>
+
+            <h3>Arroz con Pollo</h3>
+
+            <p>
+              A family favorite made with chicken, rice,
+              vegetables, and seasonings.
+            </p>
+
+            <a
+              class="recipe-link"
+              href="Food for my love.pdf#page=6"
+              target="_blank"
+              rel="noopener"
+            >
+              View Recipe
+            </a>
+
+          </div>
+        </article>
+
+        <article
+          class="recipe-card"
+          data-name="Baho en Managua"
+          data-category="meat"
+        >
+
+          <div class="recipe-visual">🍖</div>
+
+          <div class="recipe-body">
+
+            <span class="tag">Meat</span>
+
+            <h3>Baho en Managua</h3>
+
+            <p>
+              Marinated meat, plantains, yuca, and vegetables
+              slowly steamed together.
+            </p>
+
+            <a
+              class="recipe-link"
+              href="Food for my love.pdf#page=7"
+              target="_blank"
+              rel="noopener"
+            >
+              View Recipe
+            </a>
+
+          </div>
+        </article>
+
+        <article
+          class="recipe-card"
+          data-name="Berenjenas Rellenas"
+          data-category="vegetables"
+        >
+
+          <div class="recipe-visual">🍆</div>
+
+          <div class="recipe-body">
+
+            <span class="tag">Vegetables</span>
+
+            <h3>Berenjenas Rellenas</h3>
+
+            <p>
+              Baked eggplants filled with seasoned meat,
+              vegetables, and cheese.
+            </p>
+
+            <a
+              class="recipe-link"
+              href="Food for my love.pdf#page=8"
+              target="_blank"
+              rel="noopener"
+            >
+              View Recipe
+            </a>
+
+          </div>
+        </article>
+
+        <article
+          class="recipe-card"
+          data-name="Camarones al Ajillo"
+          data-category="seafood"
+        >
+
+          <div class="recipe-visual">🦐</div>
+
+          <div class="recipe-body">
+
+            <span class="tag">Seafood</span>
+
+            <h3>Camarones al Ajillo</h3>
+
+            <p>
+              Shrimp cooked in a fragrant garlic, butter,
+              citrus, and herb sauce.
+            </p>
+
+            <a
+              class="recipe-link"
+              href="Food for my love.pdf#page=10"
+              target="_blank"
+              rel="noopener"
+            >
+              View Recipe
+            </a>
+
+          </div>
+        </article>
+
+      </div>
+
+      <div class="no-results" id="noResults">
+        No recipes matched your search.
+      </div>
+
+    </section>
+
+    <section class="book-section" id="book">
+      <div class="section">
+
+        <h2>Read the Complete Cookbook</h2>
+
+        <p>
+          Open the original Food for My Love cookbook and explore
+          the complete collection of 82 recipes.
+        </p>
+
+        <a
+          class="button button-secondary"
+          href="Food for my love.pdf"
+          target="_blank"
+          rel="noopener"
+        >
+          Open the Complete PDF
+        </a>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+
+    © 2026 John Stout and Yonathan Serrano · Food for My Love
+
+    <div class="credits">
+      Nicaragua map displayed through Wikimedia Commons.
+    </div>
+
+  </footer>
+
+  <script>
+    const searchInput =
+      document.getElementById("recipeSearch");
+
+    const categoryFilter =
+      document.getElementById("categoryFilter");
+
+    const cards =
+      document.querySelectorAll(".recipe-card");
+
+    const noResults =
+      document.getElementById("noResults");
+
+    function filterRecipes() {
+      const searchText =
+        searchInput.value.toLowerCase().trim();
+
+      const selectedCategory =
+        categoryFilter.value;
+
+      let visibleCards = 0;
+
+      cards.forEach(function (card) {
+        const name =
+          card.dataset.name.toLowerCase();
+
+        const category =
+          card.dataset.category;
+
+        const description =
+          card.textContent.toLowerCase();
+
+        const matchesSearch =
+          name.includes(searchText) ||
+          description.includes(searchText);
+
+        const matchesCategory =
+          selectedCategory === "all" ||
+          category === selectedCategory;
+
+        const shouldDisplay =
+          matchesSearch && matchesCategory;
+
+        card.style.display =
+          shouldDisplay ? "block" : "none";
+
+        if (shouldDisplay) {
+          visibleCards += 1;
+        }
+      });
+
+      noResults.style.display =
+        visibleCards === 0 ? "block" : "none";
+    }
+
+    searchInput.addEventListener(
+      "input",
+      filterRecipes
+    );
+
+    categoryFilter.addEventListener(
+      "change",
+      filterRecipes
+    );
+  </script>
+
+</body>
+</html>
