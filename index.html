@@ -1,269 +1,92 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+Food for My Love
+Our Story
+Nicaragua
+About Us
+Recipes
+The Book
+Authentic Nicaraguan Recipes
+Food for My Love
+A gift from John to Yonathan, created to preserve the flavors, memories, and traditions of Nicaragua.
+“For Yonathan, with all my love.”
+— John
+Explore Recipes
+Read the Complete Book
+The Story Behind the Book
+Food for My Love began as a deeply personal gift from John Stout to his husband, Yonathan Serrano.
 
-  <title>Food for My Love</title>
+John created the cookbook to celebrate Yonathan’s Nicaraguan heritage and to honor the food, memories, and traditions that connect him to home.
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+More than a collection of recipes, this project represents love, family, cultural pride, and the way food can keep a place close to the heart, even while living far away.
 
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #fffaf2;
-      color: #17202a;
-      line-height: 1.6;
-    }
+♥
+“May these recipes always bring you closer to home.”
+From John to Yonathan
+📖
+82 Recipes
+A broad collection of traditional Nicaraguan dishes.
+🇳🇮
+Nicaraguan Heritage
+Recipes that preserve culture, memory, and family tradition.
+♥
+Created with Love
+A personal gift created by John for Yonathan.
+Nicaragua: The Heart of the Cookbook
+Nicaragua’s culinary traditions are shaped by family, regional ingredients, Indigenous heritage, and generations of shared meals.
+Map of Nicaragua
+Preserving a Connection to Home
 
-    nav {
-      background: white;
-      padding: 18px 24px;
-      border-bottom: 1px solid #e5e5e5;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+For Yonathan, these recipes are more than instructions for preparing food. They are reminders of family, community, and the country where his story began.
 
-    nav strong {
-      color: #0b57a3;
-      font-size: 20px;
-    }
+Food for My Love carries those traditions into a new chapter of life in the United States.
 
-    nav a {
-      color: #17202a;
-      text-decoration: none;
-      margin-left: 14px;
-      font-weight: bold;
-    }
+John Stout and Yonathan Serrano together outdoors
+About John & Yonathan
+Food for My Love reflects a shared life built around love, cultural appreciation, family, and the belief that traditions become stronger when they are preserved and shared.
+“John, thank you for creating this cookbook for me and for embracing the food and culture of Nicaragua with so much love. This gift makes me feel seen, valued, and connected to home. I will always treasure what you created for us.”
 
-    header {
-      min-height: 650px;
-      padding: 80px 24px;
-      text-align: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(
-        135deg,
-        #eaf3ff,
-        #fffaf2,
-        #fff0e8
-      );
-    }
+— Yonathan
+Featured Recipes
+Search the recipes currently featured on the site or filter them by category.
 
-    .hero {
-      max-width: 800px;
-    }
+🍚
+Rice
+Arroz Ancha
+A rich rice dish prepared with coconut milk, vegetables, and spices.
 
-    .label {
-      display: inline-block;
-      background: white;
-      color: #0b57a3;
-      border: 1px solid #d8d8d8;
-      border-radius: 30px;
-      padding: 8px 16px;
-      font-weight: bold;
-    }
+View Recipe
+🍲
+Rice
+Arroz Aguado
+A comforting Nicaraguan rice dish with broth, vegetables, and meat.
 
-    h1 {
-      color: #083b72;
-      font-size: 58px;
-      line-height: 1.1;
-      margin: 24px 0 18px;
-    }
+View Recipe
+🍗
+Rice
+Arroz con Pollo
+A family favorite made with chicken, rice, vegetables, and seasonings.
 
-    header p {
-      font-size: 21px;
-      color: #667085;
-      max-width: 650px;
-      margin: 0 auto 30px;
-    }
+View Recipe
+🍖
+Meat
+Baho en Managua
+Marinated meat, plantains, yuca, and vegetables slowly steamed together.
 
-    .buttons {
-      display: flex;
-      justify-content: center;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
+View Recipe
+🍆
+Vegetables
+Berenjenas Rellenas
+Baked eggplants filled with seasoned meat, vegetables, and cheese.
 
-    .button {
-      display: inline-block;
-      padding: 14px 24px;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 17px;
-    }
+View Recipe
+🦐
+Seafood
+Camarones al Ajillo
+Shrimp cooked in a fragrant garlic, butter, citrus, and herb sauce.
 
-    .primary {
-      background: #0b57a3;
-      color: white;
-    }
+View Recipe
+Read the Complete Cookbook
+Open the original Food for My Love cookbook and explore the complete collection of 82 recipes.
 
-    .secondary {
-      background: white;
-      color: #0b57a3;
-      border: 1px solid #d8d8d8;
-    }
-
-    section {
-      max-width: 1050px;
-      margin: auto;
-      padding: 70px 24px;
-    }
-
-    h2 {
-      font-size: 36px;
-      margin-bottom: 14px;
-    }
-
-    .description {
-      color: #667085;
-      font-size: 18px;
-      max-width: 750px;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-      margin-top: 30px;
-    }
-
-    .card {
-      background: white;
-      padding: 24px;
-      border: 1px solid #e5e5e5;
-      border-radius: 16px;
-    }
-
-    .card h3 {
-      color: #0b57a3;
-      margin-top: 0;
-    }
-
-    footer {
-      background: #083b72;
-      color: white;
-      text-align: center;
-      padding: 30px 20px;
-    }
-
-    @media (max-width: 700px) {
-      nav div:last-child {
-        display: none;
-      }
-
-      h1 {
-        font-size: 42px;
-      }
-
-      header {
-        min-height: 600px;
-      }
-
-      .cards {
-        grid-template-columns: 1fr;
-      }
-
-      .button {
-        width: 100%;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-  <nav>
-    <strong>Food for My Love</strong>
-
-    <div>
-      <a href="#historia">Historia</a>
-      <a href="#libro">Libro</a>
-    </div>
-  </nav>
-
-  <header>
-    <div class="hero">
-      <span class="label">Recetas nicaragüenses en EE. UU.</span>
-
-      <h1>Food for My Love</h1>
-
-      <p>
-        Una colección de sabores, recuerdos y tradiciones
-        nicaragüenses preparada para compartir el amor por nuestra cocina.
-      </p>
-
-      <div class="buttons">
-        <a class="button primary" href="#historia">
-          Conocer la historia
-        </a>
-
-        <a
-          class="button secondary"
-          href="Food for my love.pdf"
-          target="_blank"
-        >
-          Leer el libro completo
-        </a>
-      </div>
-    </div>
-  </header>
-
-  <section id="historia">
-    <h2>La historia del libro</h2>
-
-    <p class="description">
-      Food for My Love reúne recetas tradicionales nicaragüenses
-      para preservar los sabores familiares y compartirlos desde
-      Estados Unidos con nuevas generaciones.
-    </p>
-
-    <div class="cards">
-      <div class="card">
-        <h3>82 recetas</h3>
-        <p>
-          Una colección amplia de platos tradicionales de Nicaragua.
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>Tradición familiar</h3>
-        <p>
-          Recetas que conectan recuerdos, familias y generaciones.
-        </p>
-      </div>
-
-      <div class="card" id="libro">
-        <h3>Libro completo</h3>
-        <p>
-          Puedes abrir el PDF original y consultar todas las recetas.
-        </p>
-
-        <a
-          class="button primary"
-          href="Food for my love.pdf"
-          target="_blank"
-        >
-          Abrir PDF
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    © 2026 The Serrano Stouts · Food for My Love
-  </footer>
-
-</body>
-</html>
-
-
-
-      
- 
+Open the Complete PDF
+© 2026 John Stout and Yonathan Serrano · Food for My Love
+Nicaragua map: public-domain CIA World Factbook map via Wikimedia Commons.
